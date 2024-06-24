@@ -26,13 +26,8 @@ impl Shot {
         // - return 0 points if `self` is a Miss
         match self {
             Shot::Bullseye => 5,
-            Shot::Hit { distance } => {
-                if distance >= 3.0 {
-                    1
-                } else {
-                    2
-                }
-            }
+            Shot::Hit { distance } if distance < 3.0 => 2,
+            Shot::Hit { distance } => 1,
             Shot::Miss => 0,
         }
     }
